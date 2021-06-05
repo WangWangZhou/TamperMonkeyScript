@@ -1,10 +1,11 @@
 // ==UserScript==
-// @name         百度网盘文件目录打印脚本
+// @name         百度网盘文件目录打印脚本996
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  百度网盘文件目录打印脚本，在浏览器控制台打印当前目录的文件
 // @author       小明
 // @match        https://pan.baidu.com/s/*
+// @match        https://pan.baidu.com/disk/*
 // @icon         https://pan.baidu.com/m-static/base/static/images/favicon.ico?domain=baidu.com
 // @grant        none
 // ==/UserScript==
@@ -14,9 +15,7 @@ var bbsInterval = 4000; // 在ADBlock之后运行
 
 (function() {
     'use strict';
-
-    setTimeout(function(){
-        var arr = document.getElementsByClassName('filename');
+    function ppstr(arr){
         if(arr!=null && arr.length>0){
             var str='';
 
@@ -28,6 +27,15 @@ var bbsInterval = 4000; // 在ADBlock之后运行
             console.info('');
             console.info(str);
         }
+    }
+
+    setTimeout(function(){
+        //打印分享页面
+        var arr = document.getElementsByClassName('filename');
+        ppstr(arr);
+        //打印家页面
+        arr = document.getElementsByClassName('aouhYOKy');
+        ppstr(arr);
     }, bbsInterval)
 
 })();
